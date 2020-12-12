@@ -5,6 +5,7 @@ import cpf from './cpf';
 import document from './document';
 import money from './money';
 import phone from './phone';
+import number from './number';
 import zipcode from './zipcode';
 
 export interface IMaskFunction {
@@ -12,7 +13,7 @@ export interface IMaskFunction {
   clean(value: string): string | number;
 }
 
-const maskHandlers = { zipcode, phone, document, cpf, cnpj, money };
+const maskHandlers = { number, zipcode, phone, document, cpf, cnpj, money };
 export type Masks = keyof typeof maskHandlers;
 
 export default function useMask(mask: Masks, value: any) {
