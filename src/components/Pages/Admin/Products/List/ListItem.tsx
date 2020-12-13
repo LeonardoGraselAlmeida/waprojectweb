@@ -4,8 +4,8 @@ import Alert from 'components/Shared/Alert';
 import { IOption } from 'components/Shared/DropdownMenu';
 import TableCellActions from 'components/Shared/Pagination/TableCellActions';
 import Toast from 'components/Shared/Toast';
+import { moneyFormat } from 'formatters/money';
 import { logError } from 'helpers/rxjs-operators/logError';
-import useMask from 'hooks/useMask';
 import IProduct from 'interfaces/models/product';
 import DeleteIcon from 'mdi-react/DeleteIcon';
 import EditIcon from 'mdi-react/EditIcon';
@@ -23,7 +23,6 @@ interface IProps {
 
 const ListItem = memo((props: IProps) => {
   const { product, onEdit, onDeleteComplete } = props;
-  const { maskedValue: price } = useMask('money', product.price);
 
   const [deleted, setDeleted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -71,7 +70,7 @@ const ListItem = memo((props: IProps) => {
     <TableRow>
       <TableCell>{product.description}</TableCell>
       <TableCell>{product.amount}</TableCell>
-      <TableCell>{price}</TableCell>
+      <TableCell>{moneyFormat(product.price)}</TableCell>
       <TableCellActions options={options} loading={loading} error={error} onDismissError={handleDismissError} />
     </TableRow>
   );

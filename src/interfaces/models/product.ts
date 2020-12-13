@@ -3,6 +3,7 @@ export default interface IProduct {
   description: string;
   amount: number;
   price: number;
+  selected: boolean;
 
   createdDate?: Date;
   updatedDate?: Date;

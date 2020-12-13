@@ -44,6 +44,13 @@ export class ApiService {
     );
   }
 
+  public patch<T = any>(url: string, body: any): Rx.Observable<T> {
+    return this.request<T>('PATCH', url, body).pipe(
+      map(({ response }) => response),
+      filter(response => response !== undefined)
+    );
+  }
+
   public delete<T = any>(url: string, params?: any): Rx.Observable<T> {
     return this.request<T>('DELETE', url, params).pipe(
       map(({ response }) => response),
